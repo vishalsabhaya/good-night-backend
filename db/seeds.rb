@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+p "User Creation Started"
+10.times do |i|
+  user = User.create(name:Faker::Name.unique.name)
+  p "id: #{user.id} name:#{user.name}"
+end
+p "User Creation Ended"
