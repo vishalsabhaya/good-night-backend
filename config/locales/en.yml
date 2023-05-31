@@ -5,7 +5,11 @@ en:
     E0003: "You already following to %{p0}"
     E0004: "You not following to %{p0}"
     E0005: "You can not follow your self"
+    E0006: "You need to clock out first"
+    E0007: "You need to clock in first"
 
   info:
     I0001: "You started following to %{p0}"
     I0002: "You are unfollowed %{p0}"
+    I0003: "Clocked in successfully"
+    I0004: "Clocked out successfully"
