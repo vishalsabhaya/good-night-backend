@@ -10,6 +10,13 @@ class SleepTrack
   end
 
   ##
+  # sleep records of a user’s All following users’ sleep records. from the previous week, which are sorted based on the duration of All friends sleep length.
+  def index
+    @response.data = @current_user.following_users.last_week_sleep_trackings.as_json
+    return @response
+  end
+
+  ##
   # save clockin time when you are going to sleep
   # do not allow to clock in if do not clockout previous record
   def clock_in

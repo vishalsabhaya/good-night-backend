@@ -4,6 +4,49 @@ RSpec.describe SleepTrack do
   let(:sleep_track) { SleepTrack.new(options) }
   let(:response) { sleep_track.instance_variable_get(:@response) }
 
+  describe '#index' do
+    let!(:following_user1) { create(:user) }
+    let!(:following_user2) { create(:user) }
+    let!(:sleep_tracking1) do
+      create(:sleep_tracking, user: following_user1, clock_in: 1.day.ago, clock_out: 1.day.ago + 8.hours)
+    end
+    let!(:sleep_tracking2) do
+      create(:sleep_tracking, user: following_user2, clock_in: 2.day.ago, clock_out: 2.day.ago + 7.hours)
+    end
+
+    before do
+      current_user.following_users << following_user1
+      current_user.following_users << following_user2
+    end
+
+    it 'returns sleep records of all following users from the previous week, sorted by sleep duration' do
+      expected_data = [
+        {
+          'id' => sleep_tracking1.id,
+          'user_id' => following_user1.id,
+          'name' => following_user1.name,
+          'clock_in' => sleep_tracking1.clock_in,
+          'clock_out' => sleep_tracking1.clock_out,
+          'sleep_duration' => sleep_tracking1.sleep_duration
+        },
+        {
+          'id' => sleep_tracking2.id,
+          'user_id' => following_user2.id,
+          'name' => following_user2.name,
+          'clock_in' => sleep_tracking2.clock_in,
+          'clock_out' => sleep_tracking2.clock_out,
+          'sleep_duration' => sleep_tracking2.sleep_duration
+        }
+      ].as_json
+      # Make the service call
+      response = sleep_track.index
+      expect(response.is_success).to be true
+      # Assertion
+      expect(response.data).to eq(expected_data)
+      expect(response.errors).to be_empty
+    end
+  end
+
   describe '#clock_in' do
     context 'when no existing sleep record without clock out' do
       it 'creates a new sleep record with clock in time' do
