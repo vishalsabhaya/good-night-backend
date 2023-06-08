@@ -119,12 +119,12 @@ localhost:3000
 
 | No. | End Point                                            | Request Type | Description                                   |
 | --- | ---------------------------------------------------- | ------------ | --------------------------------------------- |
-| 1.  | /api/v1/users                                    | POST         | Create User                                   |
-| 2.  | /api/v1/users/:user_id/follow/:following_id      | POST         | Follow User                                   |
-| 3.  | /api/v1/users/:user_id/unfollow/:following_id    | DELETE       | Un-Follow User                                |
-| 4.  | /api/v1/users/:user_id/sleep_trackings           | GET          | User Friends Last Week Sleep Tracking Records |
-| 5.  | /api/v1/users/:user_id/sleep_trackings/clock_in  | POST         | Clock In Event                                |
-| 6.  | /api/v1/users/:user_id/sleep_trackings/clock_out | PATCH        | Clock Out Event                               |
+| 1.  | /api/v1/users                                        | POST         | Create User                                   |
+| 2.  | /api/v1/users/:user_id/follow/:following_user_id     | POST         | Follow User                                   |
+| 3.  | /api/v1/users/:user_id/unfollow/:following_user_id   | DELETE       | Un-Follow User                                |
+| 4.  | /api/v1/users/:user_id/sleep_trackings               | GET          | User Friends Last Week Sleep Tracking Records |
+| 5.  | /api/v1/users/:user_id/sleep_trackings/clock_in      | POST         | Clock In Event                                |
+| 6.  | /api/v1/users/:user_id/sleep_trackings/clock_out     | PATCH        | Clock Out Event                               |
 
 
 ## APIs documentation with [Postman](https://www.postman.com/)
